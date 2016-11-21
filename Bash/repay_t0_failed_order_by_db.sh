@@ -61,5 +61,5 @@ echo "$failed_list" | while read db_id mch_id ; do
 done
 
 if [ $need_mail -eq 1 ]; then
-	export LANG=zh_CN.UTF-8 && echo -e "${stubborn_orders_info}" | mail -s "今天多次打款失败的T0订单" lijing@cpp-pay.com
+	export LANG=zh_CN.UTF-8 && echo -e "${stubborn_orders_info}" | mail -s "今天多次打款失败的T0订单" freedominmind@163.com
 fi
