@@ -53,7 +53,7 @@ function filter_bill()
 	#去年'`'字符
 	awk -F"," '/SUCCESS/{
 				if(length($3)==20){
-					printf("%s\t%s\n", substr($3, 2, 18), 100 * substr($6, 2, length($6)-2));
+					printf("%s\t%.0f\n", substr($3, 2, 18), 100 * substr($6, 2, length($6)-2));
 				}
 			}' $bill_ful_filename | sort > $txjg_bill_orders_ful_filename
 }
