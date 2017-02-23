@@ -1,0 +1,2 @@
+statis_trade_sum.sh 脚本进行按天的统计
+run_statistic_from_starttime.sh 脚本启用多进程分发统计时间，调用上一个脚本进行统计
