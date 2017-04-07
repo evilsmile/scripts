@@ -1,4 +1,4 @@
-#!/usr/bin/lua
+#!/usr/local/bin/lua
 
 -- table是Lua的一种数据结构用来帮助我们创建不同的数据类型，如数字、字典等
 -- Lua table 使用关联型数组，你可以用任意类型的值来作数组的索引，但不能是nil
@@ -65,3 +65,10 @@ print("All fruits after remove: ", table.concat(like_fruit, ", "))
 -- 对给定的table进行升序排序
 table.sort(like_fruit)
 print("All fruits after sort: ", table.concat(like_fruit, ", "))
+
+
+-- Lua用table管理全局变量，将其放入_G的table内
+for k, v in pairs(_G)
+do
+    print(k, "->", v)
+end
