@@ -63,3 +63,39 @@ function average(...)
     return result/#arg
 end
 print("average: ", average(10, 9, 8, 2, 1))
+
+
+-- note for a object to work, it needs a closure(inner function with an
+-- upvalue ( a local value from a higher scope)
+-- the more closures made, the slower the program would run
+function mg1(n)
+    local function get()
+        return n
+    end
+    local function inc(m)
+        n = n + m
+    end
+    return {get = get, inc = inc}
+end
+object = mg1(50)
+print(object["get"]())
+object.inc(30)
+print(object.get())
+
+-----------
+do
+    local function get(o)
+        return o.one
+    end
+    local function inc(self, two)
+        self.one = self.one + two
+    end
+    function mg3(one)
+        return {one = one, get = get, inc = inc}
+    end
+end
+a = mg3(55)
+print(a:get())
+a.inc(a, 4)
+print(a:get())
+
