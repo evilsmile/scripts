@@ -67,9 +67,16 @@ print("All fruits after remove: ", table.concat(like_fruit, ", "))
 table.sort(like_fruit)
 print("All fruits after sort: ", table.concat(like_fruit, ", "))
 
+function p_tab(t)
+	for k, v in pairs(t)
+	do
+	    print(k, "->", v)
+	end
+end
 
 -- Lua用table管理全局变量，将其放入_G的table内
-for k, v in pairs(_G)
-do
-    print(k, "->", v)
-end
+--p_tab(_G)
+
+free_tab = {["name2"]="go2", name3="go3"}
+free_tab.name1 = {}
+p_tab(free_tab)
