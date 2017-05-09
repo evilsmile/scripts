@@ -99,3 +99,51 @@ print(a:get())
 a.inc(a, 4)
 print(a:get())
 
+
+-- 参数默认值
+-- Lua不直接支持参数默认值，但是如果一个函数调用的时候没有指明参数，那么该参数使用缺省值nil
+function func(x, y, z)
+    if not y then y = 0 end
+    -- 用or更简短
+    z = z or 1
+end
+
+-- 只有一个table参数的函数可以省去括号
+function foo(t)
+    return t[1] * t.x + t[2] * t.y
+end
+print(foo{3, 4, x = 5, y = 6}) -- 39
+
+-- 参数数目不定时
+function sum(...)
+    local ret = 0
+    for i, v in ipairs{...} do ret = ret + v end
+    return ret
+end
+print(sum(3, 5, 8, 9))
+
+-- 把参数置于table{...}中，还可以通过select函数访问
+function sum2(...)
+    local ret = 0
+    for i = 1, select("#", ...) do ret = ret + select(i, ...) end
+    return ret
+end
+print(sum2(8, 5, 8, 9))
+
+
+-- table 内的函数可以通过下面的方式调用
+t = {}
+function t:func(x, y)
+    self.x = x
+    self.y = y
+end
+t:func(10, 1)
+print(t.x)
+
+-- 等价于如下
+function t.func2(self, x, y)
+    self.x = x
+    self.y = y
+end
+t.func2(t, 20, 3)
+print(t.y)
