@@ -1,4 +1,4 @@
-#!/usr/local/bin/lua
+#!/usr//bin/lua
 
 -- table是Lua的一种数据结构用来帮助我们创建不同的数据类型，如数字、字典等
 -- Lua table 使用关联型数组，你可以用任意类型的值来作数组的索引，但不能是nil
@@ -13,6 +13,7 @@ mytable["Two"] = "Again lua"
 mytable["delete"] = "This will be deleted!"
 -- 移除引用 
 mytable["delete"] = nil
+mytable.sign = "123123128283lwsjlsdf3"
 
 for k, v in pairs(mytable)
 do
