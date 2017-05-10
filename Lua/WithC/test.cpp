@@ -1,3 +1,8 @@
+/* lua 和 c/c++ 交互的围绕着栈进行。
+ * c/c++ 通过压栈(push系列函数) 然后 setglobal 把变量传递到lua的全局变量中
+ * 然后调用 luaL_loadbuffer 调用脚本。
+ * 完成之后调用 getglobal 得到全局变量，通过to*系列函数得到结果
+ */
 #include <iostream>
 #include <string>
 
@@ -6,7 +11,7 @@
 int main()
 {
     std::string szLua_code =
-        "r = string.gsub(c_Str, c_Mode, c_Tag) --宿主给的变量"
+        "r = string.gsub(c_Str, c_Mode, c_Tag) -- \n"
         "u = string.upper(r)"
         "x = {} "
         "x[1], x[2] = string.gsub(c.Str, c.Mode, c.Tag) "
@@ -80,7 +85,9 @@ int main()
         lua_pop(L, 1);
 
         lua_getglobal(L, "u");
-        std::cout << "u = " << lua_tostring(L, -1) << std::endl;
+        if (lua_isstring(L, -1)) {
+            std::cout << "u = " << lua_tostring(L, -1) << std::endl;
+        }
         lua_pop(L, 1);
 
         lua_getglobal(L, "x");
@@ -92,11 +99,11 @@ int main()
             std::cout << "x.u = " << lua_tostring(L, -1) << std::endl;
             lua_pop(L, 1);
 
-            for(int i = 1; i < 2; i++) 
+            for(int i = 1; i <= 2; i++) 
             {
                 lua_pushnumber(L, i);
                 lua_gettable(L, -2);
-                std::cout << "x[" << i << "]" << lua_tostring(L, -1);
+                std::cout << "x[" << i << "]: " << lua_tostring(L, -1) << std::endl;
                 lua_pop(L, 1);
             }
         }

@@ -38,3 +38,9 @@
 	- int lua_replace(lua_State *L, int index); 
 	- int lua_checkstack(lua_State *L, int extra);  // 确保堆栈上至少有extra个空位
 	- int lua_pop(lua_State *L, int n);  // 从栈顶弹出n个元素
+
+  + table操作
+	- void lua_newtable(lua_State *L); // 新建空table并压入栈顶
+	- void lua_settable(lua_State *L, int idx); //以table在栈中的索引作为参数，并将栈顶的key和value出栈，用这两个值修改table
+	- void lua_gettable(lua_State *L, int idx); // 以table在栈中的索引作为参数，弹出栈顶的元素作为key，返回与key对应的value并压入栈顶
+	- void lua_rawgeti(lua_State *L, int idx, int n); // 取得table[n]并放到栈顶
