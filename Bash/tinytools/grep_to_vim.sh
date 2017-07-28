@@ -18,7 +18,12 @@ echo "--- TIP: Enter 'q' to exit. ---"
 
 key_word=$1
 
-result=$($GREP --color=never --include="*.cpp" --include="*.h" -rnw $key_word .)
+result=$($GREP --color=never --include="*.c" --include="*.cpp" --include="*.h" -rnw $key_word .)
+
+if [ -z "$result" ]; then
+    echo "Not found!"
+    exit 0
+fi
 
 line_no=$(echo "$result" | wc -l)
 
