@@ -24,4 +24,5 @@ send "$cmd \r";
 expect "~]"
 send "exit\r"
 
+expect eof
 exit
