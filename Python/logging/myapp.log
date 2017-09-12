@@ -1,0 +1,8 @@
+Tue, 12 Sep 2017 15:59:09 logging_test2.py[line:17] DEBUG This is debug message
+Tue, 12 Sep 2017 15:59:09 logging_test2.py[line:18] INFO This is info message
+Tue, 12 Sep 2017 15:59:09 logging_test2.py[line:19] WARNING This is warning message
+Tue, 12 Sep 2017 16:22:26 logger_exmp1.py[line:9] DEBUG This IS DEBUG log
+Tue, 12 Sep 2017 16:22:26 logger_exmp1.py[line:10] INFO This IS INFO log
+Tue, 12 Sep 2017 16:22:26 logger_exmp1.py[line:11] WARNING This IS WARNING log
+example02   : INFO     This IS INFO log
+example02   : WARNING  This IS WARNING log
