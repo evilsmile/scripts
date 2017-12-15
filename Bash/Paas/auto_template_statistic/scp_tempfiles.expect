@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+set remotepath [lindex $argv 0]
+set remoteport [lindex $argv 1]
+set remotepasswd [lindex $argv 2]
+set file_to_transfer [lindex $argv 3]
+set scp_timeout [lindex $argv 4]
+
+set time $scp_timeout
+
+spawn scp -P $remoteport $file_to_transfer  $remotepath
+expect {
+    "*yes/no" { send "yes\r"; exp_continue }
+    "*password:" { send "$remotepasswd\r"; exp_continue }
+}
