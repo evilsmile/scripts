@@ -17,5 +17,5 @@ while true; do
 
     eval $(echo "$nocol_result" | awk -F":" '{if(NR=='$choice'){printf("fn=%s;line=%s", $1, $2)}}')
     echo "file: $fn line: $line"
-    vim $fn +$line
+    vim -R $fn +$line
 done
